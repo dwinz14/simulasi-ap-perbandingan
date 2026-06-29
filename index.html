@@ -2212,7 +2212,7 @@
               for (let i = 1; i <= tenor; i++) {
                 const bunga = sisa * bungaBulananRate;
                 const pokok = angsuranTotal - bunga;
-                sisa -= pokok;
+                sisa = Math.max(0, sisa - pokok);
                 totalBayar += angsuranTotal;
                 if (i === 1) cicilanPertama = angsuranTotal;
                 tableHTML += `<tr><td>${i}</td><td>${formatRupiah(pokok)}</td><td>${formatRupiah(bunga)}</td><td>${formatRupiah(angsuranTotal)}</td><td>${formatRupiah(Math.max(0, sisa))}</td></tr>`;
