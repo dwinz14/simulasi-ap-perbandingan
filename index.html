@@ -378,7 +378,6 @@
         border: 1px solid var(--border-light);
         min-height: 300px;
         position: relative;
-        overflow: hidden;
       }
 
       .main-card::before {
@@ -1448,7 +1447,6 @@
 
       .comparison-col table {
         min-width: max-content;
-        width: 100%;
         font-size: 0.78rem;
         white-space: nowrap;
       }
@@ -1481,7 +1479,7 @@
       .kredit-type-card .kt-check {
         position: absolute;
         top: 6px;
-        right: 6px;
+        left: 6px;
         width: 22px;
         height: 22px;
         border-radius: 4px;
@@ -1521,6 +1519,46 @@
         }
         .main-card::before {
           display: none;
+        }
+        /* ════════════════════════════════════════
+   RESPONSIVE TABLE OPTIMIZATION
+   ════════════════════════════════════════ */
+
+        @media (max-width: 600px) {
+          /* 1. Kunci kolom pertama agar selalu terlihat saat scroll horizontal */
+          .result-table-wrap table {
+            min-width: 400px; /* Pastikan tabel tidak terlalu sempit */
+          }
+
+          .result-table-wrap table thead th:first-child,
+          .result-table-wrap table tbody td:first-child {
+            position: sticky;
+            left: 0;
+            z-index: 3;
+            background: var(--card-bg); /* Sesuaikan dengan background sel agar tidak transparan */
+            border-right: 1px solid var(--border-light);
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+          }
+
+          /* 2. Kurangi padding agar lebih banyak data terlihat di layar */
+          .result-table-wrap table th,
+          .result-table-wrap table td {
+            padding: 10px 8px !important;
+            font-size: 0.75rem !important;
+          }
+        }
+
+        /* 3. Perbaikan Visual Perbandingan */
+        .result-table-wrap table {
+          border-collapse: separate;
+          border-spacing: 0;
+        }
+
+        /* Memberikan gaya agar tabel terasa lebih 'ringan' di mobile */
+        .result-table-wrap {
+          border: 1px solid var(--border-light);
+          border-radius: var(--radius-sm);
+          background: var(--card-bg);
         }
       }
     </style>
@@ -2393,7 +2431,7 @@
             .comparison-col .comp-header{flex-shrink:0;font-weight:700;text-align:center;padding:8px;background:#2563eb;color:#fff;border-radius:6px;margin-bottom:10px;font-size:0.85rem;}
             .comparison-col .comp-highlight-wrap{flex-shrink:0;min-height:90px;display:flex;flex-direction:column;justify-content:center;margin-bottom:10px;}
             .comparison-col .result-table-wrap{flex:1;overflow-x:auto;}
-            .comparison-col table{min-width:max-content;width:100%;font-size:0.75rem;white-space:nowrap;}
+            .comparison-col table{min-width:max-content;font-size:0.75rem;white-space:nowrap;}
             .comparison-col thead th{padding:8px 10px;font-size:0.6rem;}
             .comparison-col tbody td{padding:6px 10px;font-size:0.73rem;}
             .comparison-col .highlight-card{padding:12px;margin-bottom:0;text-align:center;border-radius:8px;}
